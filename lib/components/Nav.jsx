@@ -8,9 +8,10 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export default function Nav({ active, onCvClick }) {
+export default function Nav({ active, onCvClick, socialLinks = {} }) {
   const [scrolled, setScrolled] = useState(false);
   const [open,     setOpen]     = useState(false);
+  const email = socialLinks.email || 'yourmail@example.com';
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
@@ -87,7 +88,7 @@ export default function Nav({ active, onCvClick }) {
             <span style={{ fontSize: 9 }}>↓</span> Resume
           </button>
 
-          <a href="mailto:yourmail@example.com" style={{
+          <a href={`mailto:${email}`} style={{
             fontFamily: "'DM Mono',monospace", fontSize: 10,
             letterSpacing: '0.2em', textTransform: 'uppercase',
             color: 'var(--ivory)', background: 'var(--ink)',
