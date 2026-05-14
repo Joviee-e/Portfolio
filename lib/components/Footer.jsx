@@ -5,7 +5,7 @@ export default function Footer() {
         Joviee<span style={{ color: 'var(--gold)' }}>.</span>
       </div>
       <div className="lbl" style={{ color: 'var(--on-dark-dim)', fontSize: 8 }}>
-        © 2026 · Built with Next.js · Deployed on Vercel
+        
       </div>
     </footer>
   );

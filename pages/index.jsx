@@ -68,5 +68,7 @@ export default function Index({ portfolioData }) {
 
 export async function getServerSideProps() {
   const portfolioData = await getPublicPortfolioData();
-  return { props: { portfolioData } };
+  return { props: {
+    portfolioData: JSON.parse(JSON.stringify(portfolioData))
+  } };
 }
