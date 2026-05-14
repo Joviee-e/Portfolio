@@ -1,97 +1,304 @@
-# Joviee Portfolio — Elite Edition 🏛️✦
+# Joviee Portfolio — Editorial Edition ✦
 
-Premium editorial portfolio. Next.js + Framer Motion + Live GitHub API.
+A cinematic full-stack developer portfolio crafted with editorial luxury aesthetics, modern motion design, and dynamic real-time integrations.
 
-## Aesthetic
-- **Palette** — Warm ivory `#f4ead8` base · Near-black `#0d0b09` ink · Gold `#c48740` accent
-- **Type** — Cormorant Garamond (display) · Crimson Pro (body) · DM Mono (UI labels)  
-- **Effects** — Grain overlay · Constellation canvas · Mouse-follow ambient glow · Custom crosshair cursor
-- **Motion** — Framer Motion throughout: staggered hero reveals, scroll-triggered animations, cinematic page feel
+Built using Next.js, Framer Motion, MongoDB, GitHub API integration, and a fully dynamic content architecture.
 
-## Quick Start
+---
+
+## Experience
+
+This portfolio blends:
+
+* editorial typography,
+* cinematic interactions,
+* atmospheric depth,
+* and modern engineering systems
+
+to create a premium digital experience that feels both artistic and technically refined.
+
+Designed with:
+
+* intentional whitespace,
+* restrained motion,
+* elegant transitions,
+* and a subtle celestial-inspired visual language.
+
+---
+
+## Aesthetic System
+
+### Palette
+
+* **Warm Ivory** — `#f4ead8`
+* **Near Black / Ink** — `#0d0b09`
+* **Muted Gold Accent** — `#c48740`
+
+### Typography
+
+* **Cormorant Garamond** — Display / Editorial Headlines
+* **Crimson Pro** — Body Copy
+* **DM Mono** — UI Labels & System Elements
+
+### Visual Effects
+
+* Grain texture overlays
+* Constellation particle system
+* Mouse-follow ambient lighting
+* Cinematic gradients
+* Custom luxury cursor
+* Atmospheric layered depth
+
+### Motion Design
+
+Built with Framer Motion throughout:
+
+* staggered hero reveals
+* cinematic section transitions
+* smooth hover interactions
+* scroll-triggered animations
+* refined parallax movement
+
+---
+
+# Tech Stack
+
+* Next.js
+* React
+* Tailwind CSS
+* Framer Motion
+* MongoDB Atlas
+* GitHub API
+* Resend Email API
+
+---
+
+# Features
+
+## Dynamic GitHub Integration
+
+* Fetches live public repositories
+* Featured repository system
+* Dynamic project rendering
+* Repository prioritization support
+
+## Dynamic Resume System
+
+* Real-time resume management
+* Latest uploaded CV always served automatically
+* MongoDB-backed resume storage
+
+## Live Contact System
+
+* Fully functional contact form
+* Real email delivery integration
+* Elegant success states
+* Production-ready form handling
+
+## Cinematic UI System
+
+* Editorial luxury aesthetic
+* Responsive cinematic layout
+* Atmospheric interactions
+* Smooth premium animations
+
+---
+
+# Quick Start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open:
 
-## Before Deploying — 5 Things to Change
+```txt
+http://localhost:3000
+```
 
-### 1. Your Name
-Search `Joviee` in all files → replace with your name.
+---
 
-### 2. GitHub Username
-`components/Work.jsx` line 5:
+# Environment Variables
+
+Create:
+
+```txt
+.env.local
+```
+
+Add:
+
+```env
+MONGODB_URI=your_mongodb_uri
+
+ADMIN_PASSWORD=your_dashboard_password
+
+JWT_SECRET=your_jwt_secret
+
+RESEND_API_KEY=your_resend_api_key
+
+CONTACT_EMAIL=your_email_address
+```
+
+---
+
+# Before Deploying
+
+## 1. Update Personal Information
+
+Search and replace:
+
+* name
+* email
+* social links
+* descriptions
+* metadata
+
+---
+
+## 2. GitHub Username
+
+Update GitHub username inside:
+
+* `components/Work.jsx`
+* `components/Contact.jsx`
+
+Example:
+
 ```js
 const GITHUB_USERNAME = 'your-github-username';
 ```
-Also update in `components/Contact.jsx` line 5.
 
-### 3. Your Email
-Search `yourmail@example.com` → replace everywhere.
+---
 
-### 4. Your CV/Resume
-Drop your PDF into `/public/cv.pdf`
-The Resume button and modal will automatically link to it.
+## 3. Profile Image
 
-### 5. Your Projects
-Edit `HIGHLIGHTS` array in `components/Work.jsx`:
-- title, tag, year, desc, stack[], link
+Place your image inside:
 
-## Social Links
-Edit the socials array in `components/Contact.jsx`:
-```js
-{ l: 'LinkedIn', h: 'https://linkedin.com/in/yourhandle' },
+```txt
+/public/profile.jpeg
 ```
 
-## Sections Order
-`pages/index.jsx` controls the page layout.
-Reorder or remove sections as needed.
+---
 
-## Deploy to Vercel
+## 4. Resume / CV
+
+Upload your resume directly through the portfolio system
+or place fallback resume inside:
+
+```txt
+/public/resume.pdf
+```
+
+---
+
+## 5. Social Links
+
+Update:
+
+* GitHub
+* LinkedIn
+* Instagram
+* Email
+* other links
+
+inside:
+
+```txt
+components/Contact.jsx
+```
+
+---
+
+# Contact System Setup
+
+The contact form uses:
+
+* Resend API
+* backend API routes
+* secure email delivery
+
+Messages submitted through the portfolio are delivered directly to your configured email address.
+
+---
+
+# File Structure
+
+```txt
+pages/
+  index.jsx
+  _app.jsx
+  _document.jsx
+  api/
+    contact.js
+    resume.js
+
+components/
+  Cursor.jsx
+  Nav.jsx
+  Hero.jsx
+  About.jsx
+  Work.jsx
+  Skills.jsx
+  Contact.jsx
+  CvModal.jsx
+  Constellation.jsx
+  Marquee.jsx
+  Footer.jsx
+
+hooks/
+  useReveal.js
+
+lib/
+  server/
+    mongodb.js
+    portfolioData.js
+
+styles/
+  globals.css
+
+public/
+  profile.jpeg
+  favicon.svg
+```
+
+---
+
+# Customization
+
+## Design Tokens
+
+| Token     | Value     | Usage         |
+| --------- | --------- | ------------- |
+| `--ivory` | `#f4ead8` | Backgrounds   |
+| `--ink`   | `#0d0b09` | Dark sections |
+| `--gold`  | `#c48740` | Accent color  |
+
+---
+
+# Deployment
+
+Deploy easily using:
 
 ```bash
 npx vercel
 ```
-Or connect your GitHub repo to vercel.com — zero config needed.
 
-## Customization
+or connect the repository directly to Vercel for automatic deployment.
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `--ivory` | `#f4ead8` | Page background |
-| `--ink` | `#0d0b09` | Dark sections, text |
-| `--gold` | `#c48740` | All accents |
+---
 
-To change accent color: replace `#c48740` and `#d9a968` across globals.css.
+# Final Vision
 
-## File Structure
+This portfolio was designed to feel like:
 
-```
-pages/
-  index.jsx        ← Main page
-  _app.jsx         ← CSS import
-  _document.jsx    ← HTML head
-components/
-  Cursor.jsx       ← Custom cursor
-  Nav.jsx          ← Navigation + CV button
-  Hero.jsx         ← Cinematic hero + photo
-  About.jsx        ← About + stats
-  Work.jsx         ← Projects + GitHub repos
-  Skills.jsx       ← Animated skill bars
-  Contact.jsx      ← Contact form + socials
-  CvModal.jsx      ← Resume download modal
-  Constellation.jsx← Star canvas background
-  Marquee.jsx      ← Scrolling strip
-  Footer.jsx       ← Footer
-hooks/
-  useReveal.js     ← Scroll intersection hook
-styles/
-  globals.css      ← All design tokens + animations
-public/
-  photo.jpg        ← Your photo (already set)
-  cv.pdf           ← Add your CV here
-  favicon.svg      ← J favicon
-```
+> a cinematic editorial experience crafted by a thoughtful engineer.
+
+A blend of:
+
+* engineering,
+* design,
+* motion,
+* atmosphere,
+* and authenticity.
