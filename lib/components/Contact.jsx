@@ -1,3 +1,4 @@
+//lib/components/Contact.jsx
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useReveal } from '../hooks/useReveal';
@@ -42,7 +43,14 @@ function Icon({ type }) {
 export default function Contact({ onCvClick, socialLinks = {}, currentStatus = {} }) {
   const [ref, vis] = useReveal(0.1);
   const [sent, setSent] = useState(false);
+  const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+  });
 
+const [loading, setLoading] = useState(false);
   const availability = (currentStatus?.availability === 'Custom' && currentStatus?.customStatus)
     ? currentStatus.customStatus
     : (currentStatus?.availability || 'Available for Hire');
@@ -51,11 +59,47 @@ export default function Contact({ onCvClick, socialLinks = {}, currentStatus = {
   const linkedin = socialLinks.linkedin || 'https://www.linkedin.com/in/joviyaljohns/';
   const instagram = socialLinks.instagram || 'https://www.instagram.com/jov.iee_e/';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    setLoading(true);
+
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Something went wrong');
+    }
+
     setSent(true);
-    setTimeout(() => setSent(false), 4000);
-  };
+
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+
+    setTimeout(() => {
+      setSent(false);
+    }, 4000);
+
+  } catch (err) {
+    console.error(err);
+    alert('Failed to send message.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const inputStyle = {
     width: '100%',
@@ -222,23 +266,62 @@ export default function Contact({ onCvClick, socialLinks = {}, currentStatus = {
                   { p: 'Subject', t: 'text', r: false },
                 ].map((f) => (
                   <input
-                    key={f.p}
-                    type={f.t}
-                    placeholder={f.p}
-                    required={f.r}
-                    style={inputStyle}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--gold-dim)'; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--line-dark)'; }}
-                  />
+  key={f.p}
+  type={f.t}
+  placeholder={f.p}
+  required={f.r}
+  value={
+    f.p === 'Full Name'
+      ? formData.name
+      : f.p === 'Email Address'
+      ? formData.email
+      : formData.subject
+  }
+  onChange={(e) =>
+    setFormData((prev) => ({
+      ...prev,
+      [f.p === 'Full Name'
+        ? 'name'
+        : f.p === 'Email Address'
+        ? 'email'
+        : 'subject']: e.target.value,
+    }))
+  }
+  style={inputStyle}
+  onFocus={(e) => {
+    e.currentTarget.style.borderColor = 'var(--gold-dim)';
+  }}
+  onBlur={(e) => {
+    e.currentTarget.style.borderColor = 'var(--line-dark)';
+  }}
+/>
                 ))}
                 <textarea
-                  placeholder="Tell me about your project..."
-                  required
-                  rows={5}
-                  style={{ ...inputStyle, marginTop: '1.25rem', marginBottom: '2rem', resize: 'vertical', lineHeight: 1.7, borderBottom: '1px solid var(--line-dark)' }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--gold-dim)'; }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--line-dark)'; }}
-                />
+  placeholder="Tell me about your project..."
+  required
+  rows={5}
+  value={formData.message}
+  onChange={(e) =>
+    setFormData((prev) => ({
+      ...prev,
+      message: e.target.value,
+    }))
+  }
+  style={{
+    ...inputStyle,
+    marginTop: '1.25rem',
+    marginBottom: '2rem',
+    resize: 'vertical',
+    lineHeight: 1.7,
+    borderBottom: '1px solid var(--line-dark)',
+  }}
+  onFocus={(e) => {
+    e.currentTarget.style.borderColor = 'var(--gold-dim)';
+  }}
+  onBlur={(e) => {
+    e.currentTarget.style.borderColor = 'var(--line-dark)';
+  }}
+/>
                 <button
                   type="submit"
                   style={{
@@ -257,7 +340,7 @@ export default function Contact({ onCvClick, socialLinks = {}, currentStatus = {
                   onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.82'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
                 >
-                  Send Message →
+                  {loading ? 'Sending...' : 'Send Message →'}
                 </button>
               </form>
             )}
