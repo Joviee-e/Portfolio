@@ -57,9 +57,15 @@ export default async function handler(req, res) {
     );
 
     res.setHeader(
-      "Cache-Control",
-      "public, max-age=3600"
-    );
+  "Cache-Control",
+  "no-store, no-cache, must-revalidate, proxy-revalidate"
+);
+
+res.setHeader("Pragma", "no-cache");
+
+res.setHeader("Expires", "0");
+
+res.setHeader("Surrogate-Control", "no-store");
 
     return res.status(200).send(pdfBuffer);
 
