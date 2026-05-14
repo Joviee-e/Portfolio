@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Constellation from './Constellation';
 
 const WORDS = ['Excellence', 'Precision', 'Craft', 'Vision', 'Depth'];
@@ -181,13 +182,13 @@ export default function Hero({ onCvClick }) {
                 position: 'absolute', inset: 0, zIndex: 2,
                 background: 'linear-gradient(160deg, transparent 40%, rgba(196,135,64,0.12) 100%)',
               }} />
-              <img
-                src="/profile.jpg"
+              <Image
+                src="/profile.jpeg"
                 alt="Joviee"
+                fill
+                priority
                 style={{
-                  width: '100%', height: '100%',
                   objectFit: 'cover', objectPosition: 'center top',
-                  display: 'block',
                   filter: 'sepia(8%) contrast(1.04) brightness(1.02)',
                 }}
               />
