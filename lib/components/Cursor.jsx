@@ -4,20 +4,21 @@ export default function Cursor() {
   const dot  = useRef(null);
   const ring = useRef(null);
   const pos  = useRef({ x: 0, y: 0 });
-  const lag  = useRef({ x: 0, y: 0 });
+  const cursorPos = useRef({ x: 0, y: 0 });
   const raf  = useRef(null);
 
   useEffect(() => {
     const move = (e) => {
       pos.current = { x: e.clientX, y: e.clientY };
-      if (dot.current)
-        dot.current.style.transform = `translate(${e.clientX - 3.5}px, ${e.clientY - 3.5}px)`;
     };
     const loop = () => {
-      lag.current.x += (pos.current.x - lag.current.x) * 0.11;
-      lag.current.y += (pos.current.y - lag.current.y) * 0.11;
+      cursorPos.current.x += (pos.current.x - cursorPos.current.x) * 0.22;
+      cursorPos.current.y += (pos.current.y - cursorPos.current.y) * 0.22;
+
+      if (dot.current)
+        dot.current.style.transform = `translate3d(${cursorPos.current.x}px, ${cursorPos.current.y}px, 0) translate(-50%, -50%)`;
       if (ring.current)
-        ring.current.style.transform = `translate(${lag.current.x - 18}px, ${lag.current.y - 18}px)`;
+        ring.current.style.transform = `translate3d(${cursorPos.current.x}px, ${cursorPos.current.y}px, 0) translate(-50%, -50%)`;
       raf.current = requestAnimationFrame(loop);
     };
     const over = (e) => {

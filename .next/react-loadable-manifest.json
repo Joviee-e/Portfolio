@@ -5,6 +5,12 @@
       "static/chunks/lib_components_Cursor_jsx.js"
     ]
   },
+  "pages\\private-dashboard\\index.jsx -> ../../lib/components/Cursor": {
+    "id": "pages\\private-dashboard\\index.jsx -> ../../lib/components/Cursor",
+    "files": [
+      "static/chunks/lib_components_Cursor_jsx.js"
+    ]
+  },
   "pages\\private-dashboard\\login.jsx -> ../../lib/components/Cursor": {
     "id": "pages\\private-dashboard\\login.jsx -> ../../lib/components/Cursor",
     "files": [

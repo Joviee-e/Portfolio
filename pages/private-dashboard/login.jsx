@@ -34,7 +34,7 @@ export default function DashboardLogin() {
     <>
       <Head><title>Private Studio Access</title></Head>
       <Cursor />
-      <main style={{ minHeight: '100vh', background: 'var(--ink)', display: 'grid', placeItems: 'center', padding: '2rem' }}>
+      <main style={{ minHeight: '100vh', background: 'var(--ivory)', display: 'grid', placeItems: 'center', padding: '2rem', color: 'var(--ink)' }}>
         <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
           <div className="grain" />
         </div>
@@ -47,13 +47,13 @@ export default function DashboardLogin() {
           style={{ 
             width: '100%', 
             maxWidth: 420, 
-            border: '1px solid var(--line-dark)', 
-            background: 'rgba(13,11,9,0.95)', 
+            border: '1px solid var(--line-ivory)', 
+            background: 'rgba(244,234,216,0.88)', 
             padding: '3rem', 
             borderRadius: 3,
             position: 'relative',
             zIndex: 10,
-            boxShadow: '0 12px 40px rgba(0,0,0,0.4)'
+            boxShadow: '0 18px 60px rgba(13,11,9,0.12)'
           }}
         >
           <motion.div
@@ -62,9 +62,9 @@ export default function DashboardLogin() {
             transition={{ delay: 0.2, duration: 0.8 }}
           >
             <p className="lbl" style={{ color: 'var(--gold)', marginBottom: 16, fontSize: 9 }}>Hidden Creative Studio</p>
-            <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 48, color: 'var(--ivory)', fontWeight: 300, marginBottom: 8, lineHeight: 1.1 }}>Control</h1>
+            <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 48, color: 'var(--ink)', fontWeight: 300, marginBottom: 8, lineHeight: 1.1 }}>Control</h1>
             <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 48, color: 'var(--gold)', fontWeight: 500, marginBottom: 24, lineHeight: 1.1 }}>Room</h1>
-            <p style={{ fontFamily: "'Crimson Pro',serif", color: 'var(--on-dark-mid)', marginBottom: 28, fontSize: 15, lineHeight: 1.6 }}>Enter your admin passphrase to access the creative control center.</p>
+            <p style={{ fontFamily: "'Crimson Pro',serif", color: 'var(--on-ivory)', marginBottom: 28, fontSize: 15, lineHeight: 1.6 }}>Enter your admin passphrase to access the creative control center.</p>
           </motion.div>
 
           <motion.div
@@ -83,8 +83,8 @@ export default function DashboardLogin() {
                   width: '100%', 
                   background: 'transparent', 
                   border: 'none', 
-                  borderBottom: '1px solid var(--line-dark)', 
-                  color: 'var(--ivory)', 
+                  borderBottom: '1px solid var(--line-ivory)', 
+                  color: 'var(--ink)', 
                   padding: '14px 0', 
                   fontFamily: "'Crimson Pro',serif",
                   fontSize: 16,
@@ -92,7 +92,7 @@ export default function DashboardLogin() {
                   transition: 'border-color 0.3s',
                 }}
                 onFocus={(e) => e.target.style.borderColor = 'var(--gold)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--line-dark)'}
+                onBlur={(e) => e.target.style.borderColor = 'var(--line-ivory)'}
               />
             </div>
 

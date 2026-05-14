@@ -49,7 +49,8 @@ body {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--gold); pointer-events: none;
   z-index: 9999; will-change: transform;
-  transition: opacity 0.2s, transform 0.08s;
+  transform-origin: center center;
+  transition: opacity 0.2s;
 }
 .c-ring {
   position: fixed; top: 0; left: 0;
@@ -57,12 +58,12 @@ body {
   border: 1px solid rgba(196,135,64,0.45);
   pointer-events: none; z-index: 9998;
   will-change: transform;
+  transform-origin: center center;
   transition: width .35s var(--expo), height .35s var(--expo),
-              top .35s var(--expo), left .35s var(--expo),
               border-color .35s, opacity .2s;
 }
-.c-ring.big  { width: 54px; height: 54px; top: -27px; left: -27px; border-color: var(--gold); }
-.c-ring.base { top: -18px; left: -18px; }
+.c-ring.big  { width: 54px; height: 54px; border-color: var(--gold); }
+.c-ring.base { width: 36px; height: 36px; }
 .c-dot.hide  { opacity: 0; }
 
 /* ── Grain ───────────────────────────────────── */

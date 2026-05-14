@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
@@ -27,7 +27,7 @@ const Toast = ({ message, show }) => {
             fontSize: 11,
             letterSpacing: '0.1em',
             zIndex: 10000,
-            boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+            boxShadow: '0 10px 28px rgba(13,11,9,0.12)',
           }}
         >
           {message}
@@ -54,13 +54,16 @@ export default function PrivateDashboard() {
 
   if (!data) {
     return (
-      <main style={{ minHeight: '100vh', background: 'var(--ink)', color: 'var(--ivory)', display: 'grid', placeItems: 'center', padding: '2rem' }}>
-        <div className="grain" style={{ position: 'fixed', inset: 0, zIndex: 0 }} />
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          <p className="lbl" style={{ color: 'var(--gold)', marginBottom: 12, fontSize: 9 }}>Loading</p>
-          <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 16, color: 'var(--on-dark-mid)' }}>Initializing your studio...</p>
-        </motion.div>
-      </main>
+      <>
+        <Cursor />
+        <main style={{ minHeight: '100vh', background: 'var(--ivory)', color: 'var(--ink)', display: 'grid', placeItems: 'center', padding: '2rem' }}>
+          <div className="grain" style={{ position: 'fixed', inset: 0, zIndex: 0 }} />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+            <p className="lbl" style={{ color: 'var(--gold)', marginBottom: 12, fontSize: 9 }}>Loading</p>
+            <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 16, color: 'var(--on-ivory)' }}>Initializing your studio...</p>
+          </motion.div>
+        </main>
+      </>
     );
   }
 
@@ -118,8 +121,8 @@ export default function PrivateDashboard() {
       onClick={() => setActiveTab(name)}
       style={{
         background: activeTab === name ? 'var(--gold)' : 'transparent',
-        color: activeTab === name ? 'var(--ink)' : 'var(--on-dark-mid)',
-        border: '1px solid ' + (activeTab === name ? 'var(--gold)' : 'var(--line-dark)'),
+        color: activeTab === name ? 'var(--ink)' : 'var(--on-ivory)',
+        border: '1px solid ' + (activeTab === name ? 'var(--gold)' : 'var(--line-ivory)'),
         padding: '10px 16px',
         borderRadius: 2,
         fontFamily: "'DM Mono',monospace",
@@ -129,7 +132,7 @@ export default function PrivateDashboard() {
         cursor: 'pointer',
         transition: 'all 0.3s',
       }}
-      whileHover={{ background: activeTab === name ? 'var(--gold-lt)' : 'rgba(244,234,216,0.05)' }}
+      whileHover={{ background: activeTab === name ? 'var(--gold-lt)' : 'rgba(13,11,9,0.05)' }}
     >
       {label}
     </motion.button>
@@ -145,10 +148,10 @@ export default function PrivateDashboard() {
         placeholder={placeholder}
         style={{
           width: '100%',
-          background: 'rgba(244,234,216,0.03)',
-          border: '1px solid var(--line-dark)',
+          background: 'rgba(13,11,9,0.025)',
+          border: '1px solid var(--line-ivory)',
           borderRadius: 2,
-          color: 'var(--ivory)',
+          color: 'var(--ink)',
           padding: '12px 14px',
           fontFamily: "'Crimson Pro',serif",
           fontSize: 15,
@@ -156,7 +159,7 @@ export default function PrivateDashboard() {
           transition: 'all 0.3s',
         }}
         onFocus={(e) => e.target.style.borderColor = 'var(--gold)'}
-        onBlur={(e) => e.target.style.borderColor = 'var(--line-dark)'}
+        onBlur={(e) => e.target.style.borderColor = 'var(--line-ivory)'}
       />
     </motion.div>
   );
@@ -170,10 +173,10 @@ export default function PrivateDashboard() {
         rows={rows}
         style={{
           width: '100%',
-          background: 'rgba(244,234,216,0.03)',
-          border: '1px solid var(--line-dark)',
+          background: 'rgba(13,11,9,0.025)',
+          border: '1px solid var(--line-ivory)',
           borderRadius: 2,
-          color: 'var(--ivory)',
+          color: 'var(--ink)',
           padding: '12px 14px',
           fontFamily: "'Crimson Pro',serif",
           fontSize: 15,
@@ -182,7 +185,7 @@ export default function PrivateDashboard() {
           resize: 'vertical',
         }}
         onFocus={(e) => e.target.style.borderColor = 'var(--gold)'}
-        onBlur={(e) => e.target.style.borderColor = 'var(--line-dark)'}
+        onBlur={(e) => e.target.style.borderColor = 'var(--line-ivory)'}
       />
     </motion.div>
   );
@@ -191,15 +194,15 @@ export default function PrivateDashboard() {
     <>
       <Head><title>Private Studio</title></Head>
       <Cursor />
-      <main style={{ minHeight: '100vh', background: 'var(--ink)', color: 'var(--ivory)' }}>
+      <main style={{ minHeight: '100vh', background: 'var(--ivory)', color: 'var(--ink)' }}>
         <div className="grain" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }} />
         
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto', padding: 'clamp(2rem, 6vw, 3.5rem)' }}>
           {/* Header */}
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'clamp(2rem, 8vw, 4rem)', borderBottom: '1px solid var(--line-dark)', paddingBottom: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'clamp(2rem, 8vw, 4rem)', borderBottom: '1px solid var(--line-ivory)', paddingBottom: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
             <div>
               <p className="lbl" style={{ color: 'var(--gold)', fontSize: 9, marginBottom: 10 }}>Creative Control Center</p>
-              <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(36px, 6vw, 52px)', fontWeight: 300, color: 'var(--ivory)', lineHeight: 1.2 }}>Your Studio</h1>
+              <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(36px, 6vw, 52px)', fontWeight: 300, color: 'var(--ink)', lineHeight: 1.2 }}>Your Studio</h1>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
               <motion.button
@@ -225,11 +228,11 @@ export default function PrivateDashboard() {
               </motion.button>
               <motion.button
                 onClick={logout}
-                whileHover={{ background: 'rgba(244,234,216,0.08)' }}
+                whileHover={{ background: 'rgba(13,11,9,0.06)' }}
                 style={{
-                  border: '1px solid var(--line-dark)',
+                  border: '1px solid var(--line-ivory)',
                   background: 'transparent',
-                  color: 'var(--on-dark-mid)',
+                  color: 'var(--on-ivory)',
                   padding: '11px 18px',
                   fontFamily: "'DM Mono',monospace",
                   fontSize: 10,
@@ -261,8 +264,8 @@ export default function PrivateDashboard() {
             {/* STATUS TAB */}
             {activeTab === 'status' && (
               <motion.div key="status" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }}>
-                <div style={{ border: '1px solid var(--line-dark)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2, marginBottom: 20 }}>
-                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ivory)', marginBottom: 24, fontWeight: 400 }}>Availability Status</h2>
+                <div style={{ border: '1px solid var(--line-ivory)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2, marginBottom: 20 }}>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ink)', marginBottom: 24, fontWeight: 400 }}>Availability Status</h2>
                   
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
                     <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 8, textTransform: 'uppercase' }}>Your Status</label>
@@ -271,10 +274,10 @@ export default function PrivateDashboard() {
                       onChange={(e) => setData((d) => ({ ...d, currentStatus: { ...d.currentStatus, availability: e.target.value } }))}
                       style={{
                         width: '100%',
-                        background: 'rgba(244,234,216,0.03)',
-                        border: '1px solid var(--line-dark)',
+                        background: 'rgba(13,11,9,0.025)',
+                        border: '1px solid var(--line-ivory)',
                         borderRadius: 2,
-                        color: 'var(--ivory)',
+                        color: 'var(--ink)',
                         padding: '12px 14px',
                         fontFamily: "'Crimson Pro',serif",
                         fontSize: 15,
@@ -284,7 +287,7 @@ export default function PrivateDashboard() {
                         transition: 'all 0.3s',
                       }}
                     >
-                      {STATUS_OPTIONS.map((opt) => <option key={opt} value={opt} style={{ background: 'var(--ink)' }}>{opt}</option>)}
+                      {STATUS_OPTIONS.map((opt) => <option key={opt} value={opt} style={{ background: 'var(--ivory)' }}>{opt}</option>)}
                     </select>
                   </motion.div>
 
@@ -308,17 +311,17 @@ export default function PrivateDashboard() {
                     <h3 style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 12, textTransform: 'uppercase', marginTop: 20 }}>Currently</h3>
                     {['building', 'learning', 'exploring'].map((k, idx) => (
                       <motion.div key={k} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + idx * 0.1 }} style={{ marginBottom: 14 }}>
-                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-dark-mid)', letterSpacing: '0.05em', marginBottom: 6, textTransform: 'capitalize' }}>Currently {k}</label>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-ivory)', letterSpacing: '0.05em', marginBottom: 6, textTransform: 'capitalize' }}>Currently {k}</label>
                         <input
                           value={(data.settings.currently?.[k] || []).join(' | ')}
                           onChange={(e) => setData((d) => ({ ...d, settings: { ...d.settings, currently: { ...d.settings.currently, [k]: e.target.value.split('|').map((x) => x.trim()).filter(Boolean) } } }))}
                           placeholder="Separate with | for multiple items"
                           style={{
                             width: '100%',
-                            background: 'rgba(244,234,216,0.02)',
-                            border: '1px solid var(--line-dark)',
+                            background: 'rgba(13,11,9,0.018)',
+                            border: '1px solid var(--line-ivory)',
                             borderRadius: 2,
-                            color: 'var(--ivory)',
+                            color: 'var(--ink)',
                             padding: '10px 12px',
                             fontFamily: "'Crimson Pro',serif",
                             fontSize: 14,
@@ -326,7 +329,7 @@ export default function PrivateDashboard() {
                             transition: 'all 0.3s',
                           }}
                           onFocus={(e) => e.target.style.borderColor = 'var(--gold)'}
-                          onBlur={(e) => e.target.style.borderColor = 'var(--line-dark)'}
+                          onBlur={(e) => e.target.style.borderColor = 'var(--line-ivory)'}
                         />
                       </motion.div>
                     ))}
@@ -338,8 +341,8 @@ export default function PrivateDashboard() {
             {/* CONTENT TAB */}
             {activeTab === 'content' && (
               <motion.div key="content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }}>
-                <div style={{ border: '1px solid var(--line-dark)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
-                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ivory)', marginBottom: 24, fontWeight: 400 }}>Portfolio Content</h2>
+                <div style={{ border: '1px solid var(--line-ivory)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ink)', marginBottom: 24, fontWeight: 400 }}>Portfolio Content</h2>
                   
                   <TextAreaField
                     label="Hero Subtitle"
@@ -361,8 +364,8 @@ export default function PrivateDashboard() {
             {/* REPOS TAB */}
             {activeTab === 'repos' && (
               <motion.div key="repos" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }}>
-                <div style={{ border: '1px solid var(--line-dark)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
-                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ivory)', marginBottom: 24, fontWeight: 400 }}>GitHub Repositories</h2>
+                <div style={{ border: '1px solid var(--line-ivory)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ink)', marginBottom: 24, fontWeight: 400 }}>GitHub Repositories</h2>
                   
                   <InputField
                     label="GitHub Username"
@@ -372,10 +375,10 @@ export default function PrivateDashboard() {
                   />
 
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-dark-mid)', letterSpacing: '0.1em', marginBottom: 16, textTransform: 'uppercase' }}>Repositories ({(data.githubRepos || []).length})</p>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-ivory)', letterSpacing: '0.1em', marginBottom: 16, textTransform: 'uppercase' }}>Repositories ({(data.githubRepos || []).length})</p>
                     <div style={{ display: 'grid', gap: 12 }}>
                       {(data.githubRepos || []).length === 0 ? (
-                        <p style={{ color: 'var(--on-dark-dim)', fontFamily: "'Crimson Pro',serif", fontSize: 14 }}>No repositories found. Add your GitHub username above.</p>
+                        <p style={{ color: 'var(--on-ivory-mid)', fontFamily: "'Crimson Pro',serif", fontSize: 14 }}>No repositories found. Add your GitHub username above.</p>
                       ) : (
                         (data.githubRepos || []).map((repo, idx) => {
                           const pref = repoMap.get(repo.name) || { preferred: false, hidden: false, order: idx };
@@ -386,23 +389,23 @@ export default function PrivateDashboard() {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.05 }}
                               style={{
-                                border: '1px solid var(--line-dark)',
+                                border: '1px solid var(--line-ivory)',
                                 padding: 14,
                                 borderRadius: 2,
-                                background: pref.hidden ? 'rgba(232, 180, 180, 0.04)' : 'rgba(244,234,216,0.02)',
+                                background: pref.hidden ? 'rgba(232, 180, 180, 0.04)' : 'rgba(13,11,9,0.018)',
                               }}
                             >
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                                <h3 style={{ fontFamily: "'Crimson Pro',serif", fontSize: 16, color: pref.hidden ? 'var(--on-dark-dim)' : 'var(--ivory)' }}>{repo.name}</h3>
+                                <h3 style={{ fontFamily: "'Crimson Pro',serif", fontSize: 16, color: pref.hidden ? 'var(--on-ivory-mid)' : 'var(--ivory)' }}>{repo.name}</h3>
                                 {repo.stargazers_count > 0 && (
                                   <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--gold)', letterSpacing: '0.05em' }}>⭐ {repo.stargazers_count}</span>
                                 )}
                               </div>
                               {repo.description && (
-                                <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-dark-mid)', marginBottom: 12 }}>{repo.description}</p>
+                                <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-ivory)', marginBottom: 12 }}>{repo.description}</p>
                               )}
                               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 8 }}>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-dark-mid)' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-ivory)' }}>
                                   <input
                                     type="checkbox"
                                     checked={pref.preferred}
@@ -414,7 +417,7 @@ export default function PrivateDashboard() {
                                   />
                                   Featured
                                 </label>
-                                <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-dark-mid)' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: "'Crimson Pro',serif", fontSize: 13, color: 'var(--on-ivory)' }}>
                                   <input
                                     type="checkbox"
                                     checked={pref.hidden}
@@ -436,9 +439,9 @@ export default function PrivateDashboard() {
                                   placeholder="Order"
                                   style={{
                                     background: 'transparent',
-                                    border: '1px solid var(--line-dark)',
+                                    border: '1px solid var(--line-ivory)',
                                     borderRadius: 2,
-                                    color: 'var(--ivory)',
+                                    color: 'var(--ink)',
                                     padding: '6px 8px',
                                     fontFamily: "'DM Mono',monospace",
                                     fontSize: 11,
@@ -460,8 +463,8 @@ export default function PrivateDashboard() {
             {/* SOCIALS TAB */}
             {activeTab === 'socials' && (
               <motion.div key="socials" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }}>
-                <div style={{ border: '1px solid var(--line-dark)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
-                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ivory)', marginBottom: 24, fontWeight: 400 }}>Social Links</h2>
+                <div style={{ border: '1px solid var(--line-ivory)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ink)', marginBottom: 24, fontWeight: 400 }}>Social Links</h2>
                   
                   {['github', 'linkedin', 'email', 'instagram', 'twitter'].map((k, idx) => (
                     <motion.div key={k} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}>
@@ -480,13 +483,13 @@ export default function PrivateDashboard() {
             {/* RESUME TAB */}
             {activeTab === 'resume' && (
               <motion.div key="resume" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.4 }}>
-                <div style={{ border: '1px solid var(--line-dark)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
-                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ivory)', marginBottom: 24, fontWeight: 400 }}>Resume</h2>
+                <div style={{ border: '1px solid var(--line-ivory)', padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: 2 }}>
+                  <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 28, color: 'var(--ink)', marginBottom: 24, fontWeight: 400 }}>Resume</h2>
                   
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                    <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 14, color: 'var(--on-dark-mid)', marginBottom: 16, lineHeight: 1.6 }}>Upload a single PDF resume. Only one resume is active at a time — uploading a new one automatically replaces the previous one.</p>
+                    <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 14, color: 'var(--on-ivory)', marginBottom: 16, lineHeight: 1.6 }}>Upload a single PDF resume. Only one resume is active at a time — uploading a new one automatically replaces the previous one.</p>
                     
-                    <label style={{ display: 'inline-block', border: '2px dashed var(--line-dark)', borderRadius: 2, padding: '2rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s', width: '100%' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--gold)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--line-dark)'}>
+                    <label style={{ display: 'inline-block', border: '2px dashed var(--line-ivory)', borderRadius: 2, padding: '2rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s', width: '100%' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--gold)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--line-ivory)'}>
                       <input
                         type="file"
                         accept="application/pdf"
@@ -494,14 +497,14 @@ export default function PrivateDashboard() {
                         style={{ display: 'none' }}
                       />
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 8, textTransform: 'uppercase' }}>Select Resume</p>
-                      <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 14, color: 'var(--on-dark-mid)' }}>Click to upload PDF</p>
+                      <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 14, color: 'var(--on-ivory)' }}>Click to upload PDF</p>
                     </label>
 
                     {data.resumeMeta && (
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} style={{ marginTop: 20, padding: 14, background: 'rgba(196,135,64,0.08)', border: '1px solid var(--gold-dim)', borderRadius: 2 }}>
                         <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 6, textTransform: 'uppercase' }}>Active Resume</p>
-                        <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 15, color: 'var(--ivory)' }}>{data.resumeMeta.filename}</p>
-                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-dark-mid)', marginTop: 8, letterSpacing: '0.05em' }}>Uploaded: {new Date(data.resumeMeta.uploadedAt).toLocaleDateString()}</p>
+                        <p style={{ fontFamily: "'Crimson Pro',serif", fontSize: 15, color: 'var(--ink)' }}>{data.resumeMeta.filename}</p>
+                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, color: 'var(--on-ivory)', marginTop: 8, letterSpacing: '0.05em' }}>Uploaded: {new Date(data.resumeMeta.uploadedAt).toLocaleDateString()}</p>
                       </motion.div>
                     )}
                   </motion.div>
@@ -525,3 +528,4 @@ export default function PrivateDashboard() {
     </>
   );
 }
+
